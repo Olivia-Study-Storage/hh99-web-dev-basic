@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@300&display=swap"
+    rel="stylesheet">
+  <title>스파르타피디아</title>
+  <style>
+    * {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .mytitle {
+      height: 250px;
+      background-color: green;
+      color: white;
+      /* [display ~ justify-content] 아이템을 세로로 정렬시키고, 수직/수평을 설정 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* [background-image ~ background-size] 배경 이미지를 설정하고, 사진을 가운데로 정렬 */
+      background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(https://bit.ly/3Trtnfa);
+      background-position: center;
+      background-size: cover;
+    }
+
+    .mytitle > h1 {
+      font-family: 'Gowun Dodum', sans-serif;
+      font-weight: bold;
+    }
+
+    .mytitle > button {
+      width: 160px;
+      height: 45px;
+      margin-top: 20px;
+      background-color: transparent;
+      border: 1px solid white;
+      border-radius: 50px;
+      color: white;
+    }
+
+    .mytitle > button:hover {
+      border: 2px solid white;
+    }
+
+    .mypost {
+      width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      /* [box-shadow] 그림자 효과주기 */
+      box-shadow: 0px 0px 3px 0px gray;
+    }
+
+    .mybtn {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mybtn > button {
+      margin-right: 10px;
+    }
+
+    .mycards {
+      width: 1200px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="mytitle">
+    <h1>내 생애 최고의 영화들</h1>
+    <button>영화 기록하기</button>
+  </section>
+  <section class="mypost">
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">영화 URL</label>
+    </div>
+    <div class="form-floating">
+      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+      <label for="floatingTextarea">코멘트</label>
+    </div>
+    <div class="mybtn">
+      <button type="button" class="btn btn-dark">기록하기</button>
+      <button type="button" class="btn btn-outline-dark">닫기</button>
+    </div>
+  </section>
+  <section class="mycards">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://bit.ly/3TDXIat" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">영화 제목이 들어갑니다.</h5>
+            <p class="card-text">여기에 코멘트가 들어갑니다.</p>
+            <p>⭐⭐⭐⭐</p>
+            <p class="mycomment">나의 의견을 쓰는 곳</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://bit.ly/3TDXIat" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">영화 제목이 들어갑니다.</h5>
+            <p class="card-text">여기에 코멘트가 들어갑니다.</p>
+            <p>⭐⭐⭐⭐</p>
+            <p class="mycomment">나의 의견을 쓰는 곳</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://bit.ly/3TDXIat" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">영화 제목이 들어갑니다.</h5>
+            <p class="card-text">여기에 코멘트가 들어갑니다.</p>
+            <p>⭐⭐⭐⭐</p>
+            <p class="mycomment">나의 의견을 쓰는 곳</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://bit.ly/3TDXIat" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">영화 제목이 들어갑니다.</h5>
+            <p class="card-text">여기에 코멘트가 들어갑니다.</p>
+            <p>⭐⭐⭐⭐</p>
+            <p class="mycomment">나의 의견을 쓰는 곳</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
