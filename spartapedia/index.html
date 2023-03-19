@@ -35,18 +35,18 @@
       background-size: cover;
     }
 
-    .mytitle > h1 {
+    .mytitle>h1 {
       font-family: 'Gowun Dodum', sans-serif;
       font-weight: bold;
     }
 
-    .mytitle > div {
+    .mytitle>div {
       color: lightgrey;
       font-style: italic;
       font-size: 13px;
     }
 
-    .mytitle > button {
+    .mytitle>button {
       width: 160px;
       height: 45px;
       margin-top: 20px;
@@ -56,7 +56,7 @@
       color: white;
     }
 
-    .mytitle > button:hover {
+    .mytitle>button:hover {
       border: 2px solid white;
     }
 
@@ -86,11 +86,42 @@
     }
   </style>
   <script>
-    // fetch를 이용해 현재 기온 띄우기
     document.addEventListener('DOMContentLoaded', () => {
+      // fetch를 이용해 현재 기온 띄우기
       fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
         document.querySelector('#temp').insertAdjacentHTML('afterend', data['temp']);
-      })
+      });
+
+      // 영화 카드 띄우기
+      fetch("http://spartacodingclub.shop/web/api/movie").then(res => res.json()).then(data => {
+        const rows = data['movies'];
+        rows.forEach(element => {
+          if(element['image'].indexOf('movie', 8) !== -1) { 
+            const title = element['title'];
+            const desc = element['desc'];
+            const star = element['star'];
+            const comment = element['comment'];
+            const image = element['image'];
+            const star_image = '⭐'.repeat(star);
+
+            const temp_html = `
+            <div class="col">
+              <div class="card h-100">
+                <img src="${image}" class="card-img-top" alt="${title} 포스터">
+                <div class="card-body">
+                  <h5 class="card-title">${title}</h5>
+                  <p class="card-text">${desc}</p>
+                  <p>${star_image}</p>
+                  <p class="mycomment">${comment}</p>
+                </div>
+              </div>
+            </div>
+            `;
+
+            document.querySelector('.row').insertAdjacentHTML('beforeend', temp_html);
+          }
+        })
+      });
     })
   </script>
 </head>
@@ -117,50 +148,6 @@
   </section>
   <section class="mycards">
     <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://bit.ly/3TDXIat" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">영화 제목이 들어갑니다.</h5>
-            <p class="card-text">여기에 코멘트가 들어갑니다.</p>
-            <p>⭐⭐⭐⭐</p>
-            <p class="mycomment">나의 의견을 쓰는 곳</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://bit.ly/3TDXIat" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">영화 제목이 들어갑니다.</h5>
-            <p class="card-text">여기에 코멘트가 들어갑니다.</p>
-            <p>⭐⭐⭐⭐</p>
-            <p class="mycomment">나의 의견을 쓰는 곳</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://bit.ly/3TDXIat" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">영화 제목이 들어갑니다.</h5>
-            <p class="card-text">여기에 코멘트가 들어갑니다.</p>
-            <p>⭐⭐⭐⭐</p>
-            <p class="mycomment">나의 의견을 쓰는 곳</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://bit.ly/3TDXIat" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">영화 제목이 들어갑니다.</h5>
-            <p class="card-text">여기에 코멘트가 들어갑니다.</p>
-            <p>⭐⭐⭐⭐</p>
-            <p class="mycomment">나의 의견을 쓰는 곳</p>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 </body>
