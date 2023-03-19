@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>자바스크립트 문법 연습하기!</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<script>
+  function checkResult() {
+    let fruits = ['사과', '배', '감', '귤', '수박'];
+    $('#q1').empty();
+    fruits.forEach(e => {
+      let temp_html = `<p>${e}</p>`;
+      $('#q1').append(temp_html);
+    })
+
+    let people = [
+      { 'name': '서영', 'age': 24 },
+      { 'name': '현아', 'age': 30 },
+      { 'name': '예지', 'age': 36 },
+    ]
+    people.forEach(v => {
+      let name = v['name'];
+      let age = v['age'];
+      let temp_html = `<p>${name}는 ${age}살입니다.</p>`;
+      $('#q2').append(temp_html);
+    })
+  }
+
+  function useJavaScript() {
+    let fruits = ['딸기', '망고', '복숭아', '수박'];
+    document.querySelector('#q1').textContent = '';
+    fruits.forEach(e => {
+      let temp_html = `<p>${e}</p>`;
+      document.querySelector('#q1').insertAdjacentHTML('afterbegin', temp_html);
+    });
+  }
+</script>
+
+<body>
+  <h2>1. 함수</h2>
+  <div class="button-part">
+    <!-- <button onclick="checkResult()">결과 확인하기!</button> -->
+    <button onclick="useJavaScript()">결과 확인하기!</button>
+  </div>
+  <div class="list-part">
+    <h2>2. 붙이기</h2>
+    <div id="q1">
+      <p><b>과일</b></p>
+    </div>
+  </div>
+  <div class="list-part">
+    <h2>3. 붙이기</h2>
+    <div id="q2">
+    </div>
+  </div>
+</body>
+
+</html>
