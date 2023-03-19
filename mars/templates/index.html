@@ -62,8 +62,22 @@
 
     function show_order() {
       fetch('/mars').then((res) => res.json()).then((data) => {
-        console.log(data)
-        alert(data['msg'])
+        const rows = data['result'];
+        rows.forEach(element => {
+          const name = element['name'];
+          const address = element['address'];
+          const size = element['size'];
+
+          const temp_html = `
+            <tr>
+              <td>${name}</td>
+              <td>${address}</td>
+              <td>${size}</td>
+            </tr>
+          `;
+
+          document.querySelector('#order-box').insertAdjacentHTML('beforeend', temp_html);
+        });
       })
     }
 
@@ -131,21 +145,6 @@
         </tr>
       </thead>
       <tbody id="order-box">
-        <tr>
-          <td>홍길동</td>
-          <td>서울시 용산구</td>
-          <td>20평</td>
-        </tr>
-        <tr>
-          <td>임꺽정</td>
-          <td>부산시 동구</td>
-          <td>10평</td>
-        </tr>
-        <tr>
-          <td>세종대왕</td>
-          <td>세종시 대왕구</td>
-          <td>30평</td>
-        </tr>
       </tbody>
     </table>
   </div>

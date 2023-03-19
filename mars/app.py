@@ -20,7 +20,8 @@ def mars_post():
 
 @app.route("/mars", methods=["GET"])
 def mars_get():
-  return jsonify({'msg':'GET 연결 완료!'})
+  mars_data = list(db.mars.find({},{'_id':False}))
+  return jsonify({'result':mars_data})
 
 if __name__ == '__main__':
   app.run('0.0.0.0', port=5000, debug=True)
