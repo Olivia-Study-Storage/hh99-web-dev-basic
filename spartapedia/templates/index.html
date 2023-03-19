@@ -22,7 +22,6 @@
 
     .mytitle {
       height: 250px;
-      background-color: green;
       color: white;
       /* [display ~ justify-content] 아이템을 세로로 정렬시키고, 수직/수평을 설정 */
       display: flex;
@@ -64,6 +63,7 @@
       width: 500px;
       margin: 20px auto;
       padding: 20px;
+      display: none;
       /* [box-shadow] 그림자 효과주기 */
       box-shadow: 0px 0px 3px 0px gray;
     }
@@ -87,15 +87,21 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // fetch를 이용해 현재 기온 띄우기
+      show_temperatures();
+      show_movie();
+    });
+
+    function show_temperatures() {
       fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
         document.querySelector('#temp').insertAdjacentHTML('afterend', data['temp']);
       });
+    }
 
-      // 영화 카드 띄우기
-      fetch("http://spartacodingclub.shop/web/api/movie").then(res => res.json()).then(data => {
-        const rows = data['movies'];
+    function show_movie() {
+      fetch("/movie").then(res => res.json()).then(data => {
+        const rows = data['result'];
         rows.forEach(element => {
+          // image 링크가 movie로 시작하지 않는 것들은 거르기
           if(element['image'].indexOf('movie', 8) !== -1) { 
             const title = element['title'];
             const desc = element['desc'];
@@ -103,7 +109,7 @@
             const comment = element['comment'];
             const image = element['image'];
             const star_image = '⭐'.repeat(star);
-
+  
             const temp_html = `
             <div class="col">
               <div class="card h-100">
@@ -117,12 +123,40 @@
               </div>
             </div>
             `;
-
+  
             document.querySelector('.row').insertAdjacentHTML('beforeend', temp_html);
           }
         })
       });
-    })
+    }
+
+    function save_movie() {
+      const url = document.querySelector('#url').value;
+      const star = document.querySelector('#star').value;
+      const comment = document.querySelector('#comment').value;
+      if(url === '' || star === '' || comment == '') {
+        alert('내용을 모두 입력해주세요!');
+        return false;
+      }
+
+      let formData = new FormData();
+      formData.append('url_give', url);
+      formData.append('star_give', star);
+      formData.append('comment_give', comment);
+
+      fetch('/movie', { method: 'POST', body: formData }).then((res) => res.json()).then((data) => {
+        alert(data['msg']);
+        window.location.reload();
+      });
+    }
+
+    function open_box() {
+      document.querySelector(".mypost").style.display = "block";
+    }
+
+    function close_box() {
+      document.querySelector(".mypost").style.display = "none";
+    }
   </script>
 </head>
 
@@ -130,20 +164,31 @@
   <section class="mytitle">
     <h1>내 생애 최고의 영화들</h1>
     <div>현재 서울의 날씨 : <span id="temp"></span>도</div>
-    <button>영화 기록하기</button>
+    <button onclick="open_box()">영화 기록하기</button>
   </section>
   <section class="mypost">
     <div class="form-floating mb-3">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">영화 URL</label>
+      <input type="text" class="form-control" id="url" placeholder="name@example.com">
+      <label for="url">영화 URL</label>
+    </div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="star">별점</label>
+      <select class="form-select" id="star">
+        <option value="">-- 선택하기 --</option>
+        <option value="1">⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+      </select>
     </div>
     <div class="form-floating">
-      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-      <label for="floatingTextarea">코멘트</label>
+      <textarea class="form-control" id="comment"></textarea>
+      <label for="comment">코멘트</label>
     </div>
     <div class="mybtn">
-      <button type="button" class="btn btn-dark">기록하기</button>
-      <button type="button" class="btn btn-outline-dark">닫기</button>
+      <button onclick="save_movie()" type="button" class="btn btn-dark">기록하기</button>
+      <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
     </div>
   </section>
   <section class="mycards">
