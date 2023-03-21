@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+</head>
+
+<body>
+  <form id="login">
+    <div>아이디 : <input type="input" id="username" /></div>
+    <div>비밀번호 : <input type="password" id="password" /></div>
+    <div>
+      <label><input type="checkbox" id="checkbox" /> 저장</label>
+    </div>
+    <button type="submit">제출</button>
+  </form>
+
+  <script>
+    // 강의에서 사용한 기존의 jQuery 코드
+    // $('#login').submit(function (event) {
+    //   event.preventDefault();
+    //   var username = $('#username').val();
+    //   var password = $('#password').val();
+    //   var isChecked = !!$('#checkbox:checked').val();
+    //   alert(username + ' / ' + password + ' / ' + isChecked);
+    // });
+
+    // 바닐라JS로 변경해보기
+    document.querySelector('#login').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const username = event.target.querySelector('#username').value;
+      const password = event.target.querySelector('#password').value;
+      const isChecked = event.target.querySelector('#checkbox').checked;
+      alert(`${username} / ${password} / ${isChecked}`);
+    });
+  </script>
+
+</body>
+</html>
