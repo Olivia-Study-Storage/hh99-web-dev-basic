@@ -1,0 +1,192 @@
+/* Global: 페이지 전반에 사용하는 컬러, 폰트 등 정의 */
+:root {
+  --color-pink: #FE6A6A;
+  --color-light-green: #E6FBF7;
+  --color-neon-green: #01D2A7;
+  --color-light-blue: #EDF2FE;
+  --color-blue: #6191F8;
+  --color-light-grey: #F3F3F3;
+  --color-dark-grey: #797979;
+  --color-black: #1E1E1E;
+
+
+	/* Font size */
+	--font-large: 48px;
+	--font-medium: 28px;
+	--font-regular: 18px;
+	--font-small: 16px;
+	--font-micro: 14px;
+
+  /* Size */
+	--size-border-radius: 4px;
+}
+
+/* Universal tags: 공통적으로 적용해야 하는 것에 대한 정의 */
+* {
+	/* [box-sizing: border-box] padding을 포함했을 때도 동일한 width, height 되도록 */
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+  background-color: var(--color-black);
+}
+
+body,
+button {
+	/* button, input과 같은 form과 관련된 태그들은
+	body에서 정의한 폰트 CSS값을 상속받지 않아 따로 정의해줘야 함 */
+	font-family: 'Montserrat', sans-serif;
+}
+
+button {
+	/* 버튼 기본 스타일 초기화, 스타일링은 세부적으로 진행 */
+	background-color: transparent;
+	cursor: pointer;
+	border: none;
+  border-radius: 20px;
+	outline: none;
+  padding: 0;
+  font-size: 25px;
+}
+
+button:hover {
+  transition: all 0.5s ease;
+  filter: brightness(70%);
+}
+
+p {
+  margin: 0;
+}
+
+section {
+  width: 700px;
+  margin: auto;
+  padding: 30px 50px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+/* alert */
+.alert {
+  height: 300px;
+}
+
+.alert__content {
+  height: 100%;
+}
+
+.alert__sentence {
+  height: 60%;
+  padding-top: 10px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.alert__button {
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.alert__button > button {
+  width: 300px;
+}
+
+.cancle {
+  background-color: var(--color-light-grey);
+  color: var(--color-dark-grey);
+}
+
+.delete {
+  background-color: var(--color-pink);
+  color: white;
+}
+
+/* list */
+.list {
+  height: 150px;
+  display: flex;
+  align-items: center;
+}
+
+.list__left {
+  width: 15%;
+}
+
+.badge {
+  width: 60px;
+  height: 30px;
+  padding-top: 5px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.agreement {
+  background-color: var(--color-pink);
+  color: white;
+
+}
+
+.sync {
+  display: inline-block;
+  background-color: var(--color-light-green);
+  color: var(--color-neon-green)
+}
+
+.plan {
+  background-color: var(--color-light-blue);
+  color: var(--color-blue);
+}
+
+.list__right > div{
+  margin-top: 10px;
+  font-size: 23px;
+}
+
+.list__date {
+  color: var(--color-dark-grey);
+}
+
+/* done */
+.done {
+  height: 700px;
+}
+
+.done__content {
+  height: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+
+.done__avatar {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+.done__guide {
+  /* float: left; */
+  font-size: 20px;
+  color: var(--color-dark-grey);
+}
+
+.done__guide > strong {
+  color: var(--color-pink);
+}
+
+.done__btn {
+  width: 100%;
+  height: 100px;
+  background-color: var(--color-pink);
+  color: white;
+  font-weight: bold;
+}
