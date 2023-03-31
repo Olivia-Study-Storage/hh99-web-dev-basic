@@ -1,5 +1,9 @@
+import json
+with open("config.json", "r", encoding="utf-8") as f:
+  config = json.load(f)
+
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://test:sparta@cluster0.grjwzgf.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient(config["dbUrl"])
 db = client.dbsparta
 
 from flask import Flask, render_template, request, jsonify
