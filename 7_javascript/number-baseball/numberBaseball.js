@@ -12,13 +12,26 @@ function setAnswer() {
   getValue(answer, count);
 }
 
-// 입력값과 답안 비교
-function getValue(answer, count) {
+// 사용자에게 입력값 받기
+function checkValue() {
   let value = prompt(`정답을 입력하세요.`);
   if(value === null) {
     alert(`입력을 취소하셨습니다.\n새로고침을 눌러 다시 시도해주세요.`);
-    return;
+    return false;
+  } else if(value.match(/\D/)) {
+    alert(`3자리 수의 숫자만 입력해야 합니다.\n다시 입력해주세요.`);
+    return checkValue();
+  } else if(value.length > 3) {
+    alert(`입력한 값의 길이는 3을 넘을 수 없습니다.\n다시 입력해주세요.`);
+    return checkValue();
   }
+  return value;
+}
+
+// 입력값과 답안 비교
+function getValue(answer, count) {
+  let value = checkValue();
+  if(!value) return;
   count++;
   console.log(`${count}번째 시도 : ${value}`);
 
